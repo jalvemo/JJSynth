@@ -12,6 +12,7 @@
 #import "JJOcillator.h"
 #import "JJMixer.h"
 #import "JJEnvelope.h"
+#import "JJDelay.h"
 
 @implementation JJAppDelegate
 //
@@ -136,20 +137,24 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
 
     sampleRate = (float) audioManager.samplingRate;
 
-    JJOcillator *oscillator1 = [JJOcillator ocillatorWithNoteOffset:-0];
-    JJOcillator *oscillator2 = [JJOcillator ocillatorWithNoteOffset:-0.0];
+    JJOcillator *oscillator1 = [JJOcillator ocillatorWithNoteOffset:0];
+    JJOcillator *oscillator2 = [JJOcillator ocillatorWithNoteOffset:0.1];
     JJOcillator *oscillator3 = [JJOcillator ocillatorWithNoteOffset:-12];
+
+    JJMixer *oscilatorMixer = [JJMixer mixerWithInputs:[NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, nil]];
 
     JJEnvelope *envelope = [JJEnvelope
             envelopeWithAttack:0.05
                          decay:1.0
                   sustainLevel:0.8
                        release:0.2
-                         input:[JJMixer mixerWithInputs:[NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, nil]]];
+                         input:oscilatorMixer];
+
+    JJDelay *delay = [JJDelay delayWithStrength:0.6 length:0.2 input:envelope];
+
+    JJSoundModule *soundModule = delay;
 
     noteDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, envelope, nil];
-
-    JJSoundModule *soundModule = envelope;
 
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)  {
 
