@@ -1,0 +1,7 @@
+#mierda ignore
+*.DS_Store
+.profile
+
+#IntelliJ project folder
+*.iml
+.idea/

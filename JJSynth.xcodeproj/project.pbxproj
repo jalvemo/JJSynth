@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		39046E6A16FF823900142C00 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E6916FF823900142C00 /* CoreMIDI.framework */; };
+		39046E7416FF876700142C00 /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39046E6D16FF876700142C00 /* AudioFileReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39046E7516FF876700142C00 /* AudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 39046E6F16FF876700142C00 /* AudioFileWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39046E7616FF876700142C00 /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 39046E7116FF876700142C00 /* Novocaine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39046E7716FF876700142C00 /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39046E7316FF876700142C00 /* RingBuffer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		39046E8416FF8EA200142C00 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E8316FF8EA200142C00 /* CoreAudio.framework */; };
+		39046E8616FF8F0D00142C00 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E8516FF8F0D00142C00 /* AudioToolbox.framework */; };
+		39046E8816FF8F1300142C00 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E8716FF8F1300142C00 /* Accelerate.framework */; };
+		39046E8A16FF8F4700142C00 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E8916FF8F4700142C00 /* CoreFoundation.framework */; };
+		39046E8C16FF8F8900142C00 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E8B16FF8F8900142C00 /* AudioUnit.framework */; };
+		E27E32A12CD72A03B12FDEF1 /* JJMixer.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E385AAB5780044A583C42 /* JJMixer.m */; };
+		E27E3345F33EE032F2FCF6E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E348FBCA5F12E37C0C944 /* main.m */; };
+		E27E33AB752C03807366EFC7 /* JJSoundModule.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E3B0428732B1513234090 /* JJSoundModule.m */; };
+		E27E34432AEEE819D3EB5A9A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E27E307C6F1778E96CF796D7 /* Credits.rtf */; };
+		E27E344F836FAB316A7F602A /* JJOcillator.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E30304FD0F2DDF6D48367 /* JJOcillator.m */; };
+		E27E3810E51AFBE537145382 /* JJSynthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E3A901DE52E7E7F14663B /* JJSynthTests.m */; };
+		E27E38DCE5BB988E15421A28 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E27E3727FEA520BF6C3B524E /* .gitignore */; };
+		E27E3953F2D9A1382EF324A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E27E34D54E378359A7E18690 /* InfoPlist.strings */; };
+		E27E39F6FFDF81906CB25A41 /* JJOcillator.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E30304FD0F2DDF6D48367 /* JJOcillator.m */; };
+		E27E3A95BFEFCC460C08EA02 /* JJEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E370459584F78A002139D /* JJEnvelope.m */; };
+		E27E3B7A879976EAE76EF433 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27E3C42A1ED040B0CF31EAF /* Cocoa.framework */; };
+		E27E3C2990AC1A91644E0B4F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27E3C42A1ED040B0CF31EAF /* Cocoa.framework */; };
+		E27E3C88DB1EDC0CE4990200 /* JJAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E33F8BCF51DAD7EB72453 /* JJAppDelegate.m */; };
+		E27E3D6010E7036B0F3EEF4F /* JJEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E370459584F78A002139D /* JJEnvelope.m */; };
+		E27E3D6B56901CF41EA15305 /* JJSoundModule.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E3B0428732B1513234090 /* JJSoundModule.m */; };
+		E27E3D84D1A75F50384EA58F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27E3AED1650A5E831E25071 /* SenTestingKit.framework */; };
+		E27E3E22118A5BEA2CF47347 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3C479C0C62751A9CC73A /* MainMenu.xib */; };
+		E27E3E5BA99F73BDC90D26FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E27E39D2532462A24A4CCC1F /* InfoPlist.strings */; };
+		E27E3E5BDAD79BC22DD87C0D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E27E3727FEA520BF6C3B524E /* .gitignore */; };
+		E27E3FD5CB2ABAC994CD152B /* JJMixer.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E385AAB5780044A583C42 /* JJMixer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E27E34326C0E030AD7AF77AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E27E3A56BE54A00B0DC0A15D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E27E3EA2034552DC92A66686;
+			remoteInfo = JJSynth;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		39046E6916FF823900142C00 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		39046E6C16FF876700142C00 /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
+		39046E6D16FF876700142C00 /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
+		39046E6E16FF876700142C00 /* AudioFileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileWriter.h; sourceTree = "<group>"; };
+		39046E6F16FF876700142C00 /* AudioFileWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileWriter.m; sourceTree = "<group>"; };
+		39046E7016FF876700142C00 /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
+		39046E7116FF876700142C00 /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
+		39046E7216FF876700142C00 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
+		39046E7316FF876700142C00 /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
+		39046E8116FF8E9600142C00 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
+		39046E8316FF8EA200142C00 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		39046E8516FF8F0D00142C00 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		39046E8716FF8F1300142C00 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		39046E8916FF8F4700142C00 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		39046E8B16FF8F8900142C00 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		E27E30304FD0F2DDF6D48367 /* JJOcillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJOcillator.m; sourceTree = "<group>"; };
+		E27E305DE9C92A103B1E607F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E27E30917FE740E50C10AEDE /* JJSynthTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "JJSynthTests-Info.plist"; sourceTree = "<group>"; };
+		E27E3118F2CEFDE82C3E88FE /* JJSynthTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JJSynthTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E27E33BBB105A336C8EEA363 /* JJNoteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJNoteDelegate.h; sourceTree = "<group>"; };
+		E27E33F8BCF51DAD7EB72453 /* JJAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJAppDelegate.m; sourceTree = "<group>"; };
+		E27E348FBCA5F12E37C0C944 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E27E35427BDFEFF3E2B13623 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E27E3615DCB4A1C39875A21D /* JJSynth-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JJSynth-Prefix.pch"; sourceTree = "<group>"; };
+		E27E36CAF21CD35B6487C2DB /* JJSynthTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJSynthTests.h; sourceTree = "<group>"; };
+		E27E370459584F78A002139D /* JJEnvelope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJEnvelope.m; sourceTree = "<group>"; };
+		E27E3727FEA520BF6C3B524E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = "file.gitignore copy"; path = .gitignore; sourceTree = "<group>"; };
+		E27E378A925CFCCE4BBDF76E /* JJSoundModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJSoundModule.h; sourceTree = "<group>"; };
+		E27E37B9E109E99BF15AD67D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E27E385AAB5780044A583C42 /* JJMixer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMixer.m; sourceTree = "<group>"; };
+		E27E3861B9F1934ACE7ECC08 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E27E3A038F8EC2D7FADFA9C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E27E3A30830D20A45224CB0F /* JJEnvelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJEnvelope.h; sourceTree = "<group>"; };
+		E27E3A901DE52E7E7F14663B /* JJSynthTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJSynthTests.m; sourceTree = "<group>"; };
+		E27E3ADA325B70A4B464CA9B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E27E3AED1650A5E831E25071 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E27E3B032FCAB850A992A61B /* JJMixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMixer.h; sourceTree = "<group>"; };
+		E27E3B0428732B1513234090 /* JJSoundModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJSoundModule.m; sourceTree = "<group>"; };
+		E27E3B8EBACF5E2206E68270 /* JJOcillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJOcillator.h; sourceTree = "<group>"; };
+		E27E3C42A1ED040B0CF31EAF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E27E3C9BABCEA08064108BC0 /* JJAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJAppDelegate.h; sourceTree = "<group>"; };
+		E27E3CB3B9913CBC24272117 /* JJSynth-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "JJSynth-Info.plist"; sourceTree = "<group>"; };
+		E27E3CB4362F89EE6720A28A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		E27E3E920BC16089A7772C6D /* JJSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JJSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E27E3105A7E47E3F714C358F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E27E3D84D1A75F50384EA58F /* SenTestingKit.framework in Frameworks */,
+				E27E3C2990AC1A91644E0B4F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27E3B14657D06C5E731985C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39046E8C16FF8F8900142C00 /* AudioUnit.framework in Frameworks */,
+				39046E8A16FF8F4700142C00 /* CoreFoundation.framework in Frameworks */,
+				39046E8816FF8F1300142C00 /* Accelerate.framework in Frameworks */,
+				39046E8616FF8F0D00142C00 /* AudioToolbox.framework in Frameworks */,
+				39046E8416FF8EA200142C00 /* CoreAudio.framework in Frameworks */,
+				39046E6A16FF823900142C00 /* CoreMIDI.framework in Frameworks */,
+				E27E3B7A879976EAE76EF433 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		39046E6B16FF876700142C00 /* Novocaine */ = {
+			isa = PBXGroup;
+			children = (
+				39046E6C16FF876700142C00 /* AudioFileReader.h */,
+				39046E6D16FF876700142C00 /* AudioFileReader.mm */,
+				39046E6E16FF876700142C00 /* AudioFileWriter.h */,
+				39046E6F16FF876700142C00 /* AudioFileWriter.m */,
+				39046E7016FF876700142C00 /* Novocaine.h */,
+				39046E7116FF876700142C00 /* Novocaine.m */,
+				39046E7216FF876700142C00 /* RingBuffer.h */,
+				39046E7316FF876700142C00 /* RingBuffer.mm */,
+			);
+			path = Novocaine;
+			sourceTree = "<group>";
+		};
+		E27E30BF5A2A6BE83432910A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3861B9F1934ACE7ECC08 /* AppKit.framework */,
+				E27E3ADA325B70A4B464CA9B /* CoreData.framework */,
+				E27E35427BDFEFF3E2B13623 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E27E311B1B3D0F660DF9A61F /* SoundModules */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3B0428732B1513234090 /* JJSoundModule.m */,
+				E27E378A925CFCCE4BBDF76E /* JJSoundModule.h */,
+				E27E30304FD0F2DDF6D48367 /* JJOcillator.m */,
+				E27E3B8EBACF5E2206E68270 /* JJOcillator.h */,
+				E27E385AAB5780044A583C42 /* JJMixer.m */,
+				E27E3B032FCAB850A992A61B /* JJMixer.h */,
+				E27E370459584F78A002139D /* JJEnvelope.m */,
+				E27E3A30830D20A45224CB0F /* JJEnvelope.h */,
+			);
+			path = SoundModules;
+			sourceTree = "<group>";
+		};
+		E27E3327FDE5C9058495C600 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E27E33BBB105A336C8EEA363 /* JJNoteDelegate.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E27E339F673EC455E61E6041 /* JJSynthTests */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3838EFBAF6D4EEA436F5 /* Supporting Files */,
+				E27E36CAF21CD35B6487C2DB /* JJSynthTests.h */,
+				E27E3A901DE52E7E7F14663B /* JJSynthTests.m */,
+			);
+			path = JJSynthTests;
+			sourceTree = "<group>";
+		};
+		E27E35510C8E13A016314127 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3E920BC16089A7772C6D /* JJSynth.app */,
+				E27E3118F2CEFDE82C3E88FE /* JJSynthTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E27E3838EFBAF6D4EEA436F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E27E30917FE740E50C10AEDE /* JJSynthTests-Info.plist */,
+				E27E39D2532462A24A4CCC1F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E27E3BE86D96EEA9391A2E08 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3CB3B9913CBC24272117 /* JJSynth-Info.plist */,
+				E27E34D54E378359A7E18690 /* InfoPlist.strings */,
+				E27E348FBCA5F12E37C0C944 /* main.m */,
+				E27E3615DCB4A1C39875A21D /* JJSynth-Prefix.pch */,
+				E27E307C6F1778E96CF796D7 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E27E3C92B20D2BE98C8B3B9E /* JJSynth */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3BE86D96EEA9391A2E08 /* Supporting Files */,
+				E27E3C9BABCEA08064108BC0 /* JJAppDelegate.h */,
+				E27E33F8BCF51DAD7EB72453 /* JJAppDelegate.m */,
+				E27E3C479C0C62751A9CC73A /* MainMenu.xib */,
+				E27E3327FDE5C9058495C600 /* Protocols */,
+				E27E311B1B3D0F660DF9A61F /* SoundModules */,
+			);
+			path = JJSynth;
+			sourceTree = "<group>";
+		};
+		E27E3FAD86F51570F6490271 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39046E6916FF823900142C00 /* CoreMIDI.framework */,
+				39046E8916FF8F4700142C00 /* CoreFoundation.framework */,
+				39046E8716FF8F1300142C00 /* Accelerate.framework */,
+				39046E8516FF8F0D00142C00 /* AudioToolbox.framework */,
+				39046E8316FF8EA200142C00 /* CoreAudio.framework */,
+				39046E8116FF8E9600142C00 /* CoreAudioKit.framework */,
+				E27E3C42A1ED040B0CF31EAF /* Cocoa.framework */,
+				E27E30BF5A2A6BE83432910A /* Other Frameworks */,
+				E27E3AED1650A5E831E25071 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E27E3FB96C3FD87B8D9B9721 = {
+			isa = PBXGroup;
+			children = (
+				39046E8B16FF8F8900142C00 /* AudioUnit.framework */,
+				39046E6B16FF876700142C00 /* Novocaine */,
+				E27E35510C8E13A016314127 /* Products */,
+				E27E3FAD86F51570F6490271 /* Frameworks */,
+				E27E3C92B20D2BE98C8B3B9E /* JJSynth */,
+				E27E339F673EC455E61E6041 /* JJSynthTests */,
+				E27E3727FEA520BF6C3B524E /* .gitignore */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E27E31A7C059B0E069318B2F /* JJSynthTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E27E3B5B024E6705C0FA8645 /* Build configuration list for PBXNativeTarget "JJSynthTests" */;
+			buildPhases = (
+				E27E3249ECF80F87732A07B2 /* Sources */,
+				E27E3105A7E47E3F714C358F /* Frameworks */,
+				E27E30F82F28F5DF80BA3DF7 /* Resources */,
+				E27E3CF4507195B7F2E9BB20 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E27E355E043EC1BBCB936794 /* PBXTargetDependency */,
+			);
+			name = JJSynthTests;
+			productName = JJSynthTests;
+			productReference = E27E3118F2CEFDE82C3E88FE /* JJSynthTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		E27E3EA2034552DC92A66686 /* JJSynth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E27E3E9F6700F7E9D42EC839 /* Build configuration list for PBXNativeTarget "JJSynth" */;
+			buildPhases = (
+				E27E3F5E04657573B884F542 /* Sources */,
+				E27E3B14657D06C5E731985C /* Frameworks */,
+				E27E38511E45A2A1E0191F12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JJSynth;
+			productName = JJSynth;
+			productReference = E27E3E920BC16089A7772C6D /* JJSynth.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E27E3A56BE54A00B0DC0A15D /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = E27E36DFD9C50924F1BBF5CB /* Build configuration list for PBXProject "JJSynth" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E27E3FB96C3FD87B8D9B9721;
+			productRefGroup = E27E35510C8E13A016314127 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E27E3EA2034552DC92A66686 /* JJSynth */,
+				E27E31A7C059B0E069318B2F /* JJSynthTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E27E30F82F28F5DF80BA3DF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E27E3E5BA99F73BDC90D26FA /* InfoPlist.strings in Resources */,
+				E27E3E5BDAD79BC22DD87C0D /* .gitignore in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27E38511E45A2A1E0191F12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E27E3953F2D9A1382EF324A4 /* InfoPlist.strings in Resources */,
+				E27E34432AEEE819D3EB5A9A /* Credits.rtf in Resources */,
+				E27E3E22118A5BEA2CF47347 /* MainMenu.xib in Resources */,
+				E27E38DCE5BB988E15421A28 /* .gitignore in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E27E3CF4507195B7F2E9BB20 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E27E3249ECF80F87732A07B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E27E3810E51AFBE537145382 /* JJSynthTests.m in Sources */,
+				E27E3D6B56901CF41EA15305 /* JJSoundModule.m in Sources */,
+				E27E344F836FAB316A7F602A /* JJOcillator.m in Sources */,
+				E27E32A12CD72A03B12FDEF1 /* JJMixer.m in Sources */,
+				E27E3D6010E7036B0F3EEF4F /* JJEnvelope.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27E3F5E04657573B884F542 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E27E3345F33EE032F2FCF6E9 /* main.m in Sources */,
+				E27E3C88DB1EDC0CE4990200 /* JJAppDelegate.m in Sources */,
+				39046E7416FF876700142C00 /* AudioFileReader.mm in Sources */,
+				39046E7516FF876700142C00 /* AudioFileWriter.m in Sources */,
+				39046E7616FF876700142C00 /* Novocaine.m in Sources */,
+				39046E7716FF876700142C00 /* RingBuffer.mm in Sources */,
+				E27E33AB752C03807366EFC7 /* JJSoundModule.m in Sources */,
+				E27E39F6FFDF81906CB25A41 /* JJOcillator.m in Sources */,
+				E27E3FD5CB2ABAC994CD152B /* JJMixer.m in Sources */,
+				E27E3A95BFEFCC460C08EA02 /* JJEnvelope.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E27E355E043EC1BBCB936794 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E27E3EA2034552DC92A66686 /* JJSynth */;
+			targetProxy = E27E34326C0E030AD7AF77AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E27E307C6F1778E96CF796D7 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E27E3CB4362F89EE6720A28A /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		E27E34D54E378359A7E18690 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E27E305DE9C92A103B1E607F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E27E39D2532462A24A4CCC1F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E27E37B9E109E99BF15AD67D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E27E3C479C0C62751A9CC73A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E27E3A038F8EC2D7FADFA9C7 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E27E30DE64820945EFE0D516 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JJSynth/JJSynth-Prefix.pch";
+				INFOPLIST_FILE = "JJSynth/JJSynth-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E27E3225E82FE2CE5FF273C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JJSynth/JJSynth-Prefix.pch";
+				INFOPLIST_FILE = "JJSynth/JJSynth-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E27E32E1E6605E959969C7EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E27E33999F74A8455FD463D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JJSynth.app/Contents/MacOS/JJSynth";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JJSynth/JJSynth-Prefix.pch";
+				INFOPLIST_FILE = "JJSynthTests/JJSynthTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E27E34B125DF49700333886C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JJSynth.app/Contents/MacOS/JJSynth";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JJSynth/JJSynth-Prefix.pch";
+				INFOPLIST_FILE = "JJSynthTests/JJSynthTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		E27E37FC57E8CBF36267E185 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E27E36DFD9C50924F1BBF5CB /* Build configuration list for PBXProject "JJSynth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E27E32E1E6605E959969C7EE /* Release */,
+				E27E37FC57E8CBF36267E185 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E27E3B5B024E6705C0FA8645 /* Build configuration list for PBXNativeTarget "JJSynthTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E27E34B125DF49700333886C /* Release */,
+				E27E33999F74A8455FD463D3 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E27E3E9F6700F7E9D42EC839 /* Build configuration list for PBXNativeTarget "JJSynth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E27E3225E82FE2CE5FF273C0 /* Release */,
+				E27E30DE64820945EFE0D516 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E27E3A56BE54A00B0DC0A15D /* Project object */;
+}
