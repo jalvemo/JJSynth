@@ -7,10 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "JJSoundModule.h"
-#import "JJNoteDelegate.h"
 
 
-@interface JJEnvelope : JJSoundModule <JJNoteDelegate>{
+@interface JJEnvelope : JJSoundModule{
     @private
     JJSoundModule *input;
     float attack;

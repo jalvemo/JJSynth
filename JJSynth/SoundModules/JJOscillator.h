@@ -7,10 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "JJSoundModule.h"
-#import "JJNoteDelegate.h"
 
 
-@interface JJOcillator : JJSoundModule <JJNoteDelegate>{
+@interface JJOscillator : JJSoundModule{
     @private
     float noteOffset;
     float phase;
@@ -25,8 +24,7 @@
 
 - (id)initWithNoteOffset:(float)noteOffset;
 
-+ (id)ocillatorWithNoteOffset:(float)noteOffset;
-
++ (id)oscillatorWithNoteOffset:(float)noteOffset;
 
 - (float)getOutput;
 @end

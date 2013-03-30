@@ -7,14 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "JJNoteDelegate.h"
+#import "JJMidiDelegate.h"
 
-@interface JJAppDelegate : NSObject <NSApplicationDelegate, JJNoteDelegate>{
+@interface JJAppDelegate : NSObject <NSApplicationDelegate, JJMidiDelegate>{
     @private
 
     NSMutableArray *currentlyPlayingNotesInOrder;
     NSMutableSet *currentlyPlayingNotes;
-    NSArray *noteDelegates;
+    NSArray *midiDelegates;
 
 }
 
@@ -22,5 +22,5 @@
 
 @property(nonatomic, strong) NSMutableArray *currentlyPlayingNotesInOrder;
 @property(nonatomic, strong) NSMutableSet *currentlyPlayingNotes;
-@property(nonatomic, strong) NSArray *noteDelegates;
+@property(nonatomic, strong) NSArray *midiDelegates;
 @end
