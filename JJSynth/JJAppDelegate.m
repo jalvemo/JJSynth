@@ -9,10 +9,11 @@
 #import "JJAppDelegate.h"
 #import "Novocaine.h"
 #import "JJSoundModule.h"
-#import "JJOcillator.h"
+#import "JJOscillator.h"
 #import "JJMixer.h"
 #import "JJEnvelope.h"
 #import "JJDelay.h"
+#import "JJFilter.h"
 
 @implementation JJAppDelegate
 //
@@ -31,22 +32,39 @@
 @synthesize currentlyPlayingNotesInOrder;
 @synthesize currentlyPlayingNotes;
 
-@synthesize noteDelegates;
+@synthesize midiDelegates;
 
 - (void)noteOn:(int)note withVelocity: (int)velocity{
-    for (id<JJNoteDelegate> noteDelegate in noteDelegates){
-        [noteDelegate noteOn:note withVelocity:velocity];
+    for (id<JJMidiDelegate> midiDelegate in midiDelegates){
+        [midiDelegate noteOn:note withVelocity:velocity];
     }
 }
 - (void)noteOff:(int) note{
-    for (id<JJNoteDelegate> noteDelegate in noteDelegates){
-        [noteDelegate noteOff:note];
+    for (id<JJMidiDelegate> midiDelegate in midiDelegates){
+        [midiDelegate noteOff:note];
     }
 }
 - (void)noteTransferTo:(int) note{
-    for (id<JJNoteDelegate> noteDelegate in noteDelegates){
-        [noteDelegate noteTransferTo:note];
+    for (id<JJMidiDelegate> midiDelegate in midiDelegates){
+        [midiDelegate noteTransferTo:note];
     }
+}
+- (void)pitchBend:(float)bend {
+    for (id<JJMidiDelegate> midiDelegate in midiDelegates){
+        [midiDelegate pitchBend:bend];
+    }
+}
+- (void)controllerChange:(float)change onController:(int)controller {
+    for (id<JJMidiDelegate> midiDelegate in midiDelegates){
+        [midiDelegate controllerChange:change onController:controller];
+    }
+}
+
+static inline unsigned short CombineBytes(unsigned char First, unsigned char Second) {
+    unsigned short combined = (unsigned short)Second;
+    combined <<= 7;
+    combined |= (unsigned short)First;
+    return combined;
 }
 
 void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *srcRef)
@@ -58,31 +76,49 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
     int note = packet->data[1];
     int velocity = packet->data[2];
 
-    //NSLog(@"%3i %3i %3i", message, note, velocity);
+    int combined = CombineBytes(packet->data[1], packet->data[2]);
+    
+    NSNumber *noteNumber = [NSNumber numberWithInt:packet->data[1]];
+    
+    switch (packet->data[0] & 0xF0) {
+        case 0x80: // note off
+            [delegate.currentlyPlayingNotes removeObject:[NSNumber numberWithInt:note]];
 
-    if ((message >= 128 && message <= 143) || velocity == 0) { // note off
-        [delegate.currentlyPlayingNotes removeObject:[NSNumber numberWithInt:note]];
+            // ta bort senaste noterna om de inte spelas längre
+            while ([delegate.currentlyPlayingNotesInOrder count] > 0 && ![delegate.currentlyPlayingNotes containsObject:[delegate.currentlyPlayingNotesInOrder lastObject]]) {
+                [delegate.currentlyPlayingNotesInOrder removeLastObject];
+            }
 
-        // ta bort senaste noterna om de inte spelas längre
-        while ([delegate.currentlyPlayingNotesInOrder count] > 0 && ![delegate.currentlyPlayingNotes containsObject:[delegate.currentlyPlayingNotesInOrder lastObject]]) {
-            [delegate.currentlyPlayingNotesInOrder removeLastObject];
-        }
+            if ([delegate.currentlyPlayingNotesInOrder count] > 0) {
+                [delegate noteTransferTo:[[[delegate currentlyPlayingNotesInOrder] lastObject] integerValue]];
 
-        if ([delegate.currentlyPlayingNotesInOrder count] > 0) {
-            [delegate noteTransferTo:[[[delegate currentlyPlayingNotesInOrder] lastObject] integerValue]];
-
-        } else {
-            [delegate noteOff:note];
-        }
-    }
-    else if (message >= 144 && message <= 159) { // note on
-        if (delegate.currentlyPlayingNotes.count == 0){
-            [delegate noteOn:note withVelocity:velocity];
-        }else{
-            [delegate noteTransferTo:note];
-        }
-        [delegate.currentlyPlayingNotesInOrder addObject:[NSNumber numberWithInt:note]];
-        [delegate.currentlyPlayingNotes addObject:[NSNumber numberWithInt:note]];
+            } else {
+                [delegate noteOff:note];
+            }
+            break;
+        case 0x90: // note on
+            if (delegate.currentlyPlayingNotes.count == 0){
+                [delegate noteOn:note withVelocity:velocity];
+            }else{
+                [delegate noteTransferTo:note];
+            }
+            [delegate.currentlyPlayingNotesInOrder addObject:[NSNumber numberWithInt:note]];
+            [delegate.currentlyPlayingNotes addObject:[NSNumber numberWithInt:note]];
+            break;
+        case 0xB0: // control change
+            // http://www.spectrasonics.net/products/legacy/atmosphere-cclist.php
+            [delegate controllerChange:packet->data[2] onController:packet->data[1]];
+            break;
+        case 0xD0: // after touch
+            break;
+        case 0xE0: // pitch bend
+            // get value between -1 and 1, 0 is equlibrium
+            [delegate pitchBend:combined / (double) 0x1FFF - 1];
+            break;
+        case 0xF0: // sys stuff, ignore
+        default:
+            //NSLog(@"%3d %3d %3d", message, note, velocity);
+            break;
     }
 }
 
@@ -137,24 +173,29 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
 
     sampleRate = (float) audioManager.samplingRate;
 
-    JJOcillator *oscillator1 = [JJOcillator ocillatorWithNoteOffset:0];
-    JJOcillator *oscillator2 = [JJOcillator ocillatorWithNoteOffset:0.1];
-    JJOcillator *oscillator3 = [JJOcillator ocillatorWithNoteOffset:-12];
+    JJOscillator *oscillator1 = [JJOscillator oscillatorWithNoteOffset:0];
+    JJOscillator *oscillator2 = [JJOscillator oscillatorWithNoteOffset:0.1];
+    JJOscillator *oscillator3 = [JJOscillator oscillatorWithNoteOffset:-12];
 
-    JJMixer *oscilatorMixer = [JJMixer mixerWithInputs:[NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, nil]];
+    JJMixer *oscillatorMixer = [JJMixer mixerWithInputs:[NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, nil]];
+    
+    JJFilter *filter = [JJFilter
+              filterWithCutoff:127
+                     resonance:0
+                         input:oscillatorMixer];
 
     JJEnvelope *envelope = [JJEnvelope
             envelopeWithAttack:0.05
                          decay:1.0
                   sustainLevel:0.8
                        release:0.2
-                         input:oscilatorMixer];
+                         input:filter];
 
     JJDelay *delay = [JJDelay delayWithStrength:0.6 length:0.2 input:envelope];
 
     JJSoundModule *soundModule = delay;
 
-    noteDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, envelope, nil];
+    midiDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, filter, envelope, nil];
 
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)  {
 
@@ -172,7 +213,7 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
 
     currentlyPlayingNotes = [NSMutableSet set];
     currentlyPlayingNotesInOrder = [NSMutableArray array];
-    noteDelegates = [NSArray array]; // do mutable ??
+    midiDelegates = [NSArray array]; // do mutable ??
 
     [self setupSynth];
     [self setupMIDI];

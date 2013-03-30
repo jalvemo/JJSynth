@@ -6,6 +6,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "JJMidiDelegate.h"
 
 // move..?
 float sampleRate;
@@ -13,8 +14,8 @@ static inline float frequencyFromNote(float note) {
     return (float) (440.0 * pow(2,((double)note - 69.0) / 12.0));
 }
 
-@interface JJSoundModule : NSObject{
-
+@interface JJSoundModule : NSObject<JJMidiDelegate>{
+    
 @private
     JJSoundModule *inputModule;
 }

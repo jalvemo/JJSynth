@@ -17,17 +17,18 @@
 		39046E8816FF8F1300142C00 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E8716FF8F1300142C00 /* Accelerate.framework */; };
 		39046E8A16FF8F4700142C00 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E8916FF8F4700142C00 /* CoreFoundation.framework */; };
 		39046E8C16FF8F8900142C00 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39046E8B16FF8F8900142C00 /* AudioUnit.framework */; };
+		4866590017074C1D000F80FB /* JJFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 486658FF17074C1D000F80FB /* JJFilter.m */; };
 		E27E31B285CE6F9B22571F48 /* JJDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E30844BBB62F9A59EB4B0 /* JJDelay.m */; };
 		E27E32A12CD72A03B12FDEF1 /* JJMixer.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E385AAB5780044A583C42 /* JJMixer.m */; };
 		E27E3345F33EE032F2FCF6E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E348FBCA5F12E37C0C944 /* main.m */; };
 		E27E33AB752C03807366EFC7 /* JJSoundModule.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E3B0428732B1513234090 /* JJSoundModule.m */; };
 		E27E34432AEEE819D3EB5A9A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E27E307C6F1778E96CF796D7 /* Credits.rtf */; };
-		E27E344F836FAB316A7F602A /* JJOcillator.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E30304FD0F2DDF6D48367 /* JJOcillator.m */; };
+		E27E344F836FAB316A7F602A /* JJOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E30304FD0F2DDF6D48367 /* JJOscillator.m */; };
 		E27E361C59C114B9F7AC3F7C /* JJDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E30844BBB62F9A59EB4B0 /* JJDelay.m */; };
 		E27E3810E51AFBE537145382 /* JJSynthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E3A901DE52E7E7F14663B /* JJSynthTests.m */; };
 		E27E38DCE5BB988E15421A28 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E27E3727FEA520BF6C3B524E /* .gitignore */; };
 		E27E3953F2D9A1382EF324A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E27E34D54E378359A7E18690 /* InfoPlist.strings */; };
-		E27E39F6FFDF81906CB25A41 /* JJOcillator.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E30304FD0F2DDF6D48367 /* JJOcillator.m */; };
+		E27E39F6FFDF81906CB25A41 /* JJOscillator.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E30304FD0F2DDF6D48367 /* JJOscillator.m */; };
 		E27E3A95BFEFCC460C08EA02 /* JJEnvelope.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E370459584F78A002139D /* JJEnvelope.m */; };
 		E27E3B7A879976EAE76EF433 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27E3C42A1ED040B0CF31EAF /* Cocoa.framework */; };
 		E27E3C2990AC1A91644E0B4F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27E3C42A1ED040B0CF31EAF /* Cocoa.framework */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31DC2D798839BEE7608B8142 /* JJMidiDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMidiDelegate.h; sourceTree = "<group>"; };
 		39046E6916FF823900142C00 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		39046E6C16FF876700142C00 /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
 		39046E6D16FF876700142C00 /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
@@ -67,13 +69,14 @@
 		39046E8716FF8F1300142C00 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		39046E8916FF8F4700142C00 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		39046E8B16FF8F8900142C00 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		E27E30304FD0F2DDF6D48367 /* JJOcillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJOcillator.m; sourceTree = "<group>"; };
+		486658FE17074C1D000F80FB /* JJFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJFilter.h; sourceTree = "<group>"; };
+		486658FF17074C1D000F80FB /* JJFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJFilter.m; sourceTree = "<group>"; };
+		E27E30304FD0F2DDF6D48367 /* JJOscillator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJOscillator.m; sourceTree = "<group>"; };
 		E27E305DE9C92A103B1E607F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E27E30844BBB62F9A59EB4B0 /* JJDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJDelay.m; sourceTree = "<group>"; };
 		E27E30917FE740E50C10AEDE /* JJSynthTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "JJSynthTests-Info.plist"; sourceTree = "<group>"; };
 		E27E3118F2CEFDE82C3E88FE /* JJSynthTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JJSynthTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27E318C7EE76E89D219E805 /* JJDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJDelay.h; sourceTree = "<group>"; };
-		E27E33BBB105A336C8EEA363 /* JJNoteDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJNoteDelegate.h; sourceTree = "<group>"; };
 		E27E33F8BCF51DAD7EB72453 /* JJAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJAppDelegate.m; sourceTree = "<group>"; };
 		E27E348FBCA5F12E37C0C944 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E27E35427BDFEFF3E2B13623 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,7 +95,7 @@
 		E27E3AED1650A5E831E25071 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E27E3B032FCAB850A992A61B /* JJMixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMixer.h; sourceTree = "<group>"; };
 		E27E3B0428732B1513234090 /* JJSoundModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJSoundModule.m; sourceTree = "<group>"; };
-		E27E3B8EBACF5E2206E68270 /* JJOcillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJOcillator.h; sourceTree = "<group>"; };
+		E27E3B8EBACF5E2206E68270 /* JJOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJOscillator.h; sourceTree = "<group>"; };
 		E27E3C42A1ED040B0CF31EAF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E27E3C9BABCEA08064108BC0 /* JJAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJAppDelegate.h; sourceTree = "<group>"; };
 		E27E3CB3B9913CBC24272117 /* JJSynth-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "JJSynth-Info.plist"; sourceTree = "<group>"; };
@@ -157,12 +160,14 @@
 			children = (
 				E27E3B0428732B1513234090 /* JJSoundModule.m */,
 				E27E378A925CFCCE4BBDF76E /* JJSoundModule.h */,
-				E27E30304FD0F2DDF6D48367 /* JJOcillator.m */,
-				E27E3B8EBACF5E2206E68270 /* JJOcillator.h */,
+				E27E30304FD0F2DDF6D48367 /* JJOscillator.m */,
+				E27E3B8EBACF5E2206E68270 /* JJOscillator.h */,
 				E27E385AAB5780044A583C42 /* JJMixer.m */,
 				E27E3B032FCAB850A992A61B /* JJMixer.h */,
 				E27E370459584F78A002139D /* JJEnvelope.m */,
 				E27E3A30830D20A45224CB0F /* JJEnvelope.h */,
+				486658FE17074C1D000F80FB /* JJFilter.h */,
+				486658FF17074C1D000F80FB /* JJFilter.m */,
 				E27E30844BBB62F9A59EB4B0 /* JJDelay.m */,
 				E27E318C7EE76E89D219E805 /* JJDelay.h */,
 			);
@@ -172,7 +177,7 @@
 		E27E3327FDE5C9058495C600 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				E27E33BBB105A336C8EEA363 /* JJNoteDelegate.h */,
+				31DC2D798839BEE7608B8142 /* JJMidiDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -367,7 +372,7 @@
 			files = (
 				E27E3810E51AFBE537145382 /* JJSynthTests.m in Sources */,
 				E27E3D6B56901CF41EA15305 /* JJSoundModule.m in Sources */,
-				E27E344F836FAB316A7F602A /* JJOcillator.m in Sources */,
+				E27E344F836FAB316A7F602A /* JJOscillator.m in Sources */,
 				E27E32A12CD72A03B12FDEF1 /* JJMixer.m in Sources */,
 				E27E3D6010E7036B0F3EEF4F /* JJEnvelope.m in Sources */,
 				E27E361C59C114B9F7AC3F7C /* JJDelay.m in Sources */,
@@ -385,10 +390,11 @@
 				39046E7616FF876700142C00 /* Novocaine.m in Sources */,
 				39046E7716FF876700142C00 /* RingBuffer.mm in Sources */,
 				E27E33AB752C03807366EFC7 /* JJSoundModule.m in Sources */,
-				E27E39F6FFDF81906CB25A41 /* JJOcillator.m in Sources */,
+				E27E39F6FFDF81906CB25A41 /* JJOscillator.m in Sources */,
 				E27E3FD5CB2ABAC994CD152B /* JJMixer.m in Sources */,
 				E27E3A95BFEFCC460C08EA02 /* JJEnvelope.m in Sources */,
 				E27E31B285CE6F9B22571F48 /* JJDelay.m in Sources */,
+				4866590017074C1D000F80FB /* JJFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

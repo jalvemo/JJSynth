@@ -5,10 +5,10 @@
 //
 
 
-#import "JJOcillator.h"
+#import "JJOscillator.h"
 
 
-@implementation JJOcillator {
+@implementation JJOscillator {
 
 }
 @synthesize noteOffset;
@@ -25,7 +25,7 @@
     return self;
 }
 
-+ (id)ocillatorWithNoteOffset:(float)noteOffset {
++ (id)oscillatorWithNoteOffset:(float)noteOffset {
     return [[self alloc] initWithNoteOffset:noteOffset];
 }
 
