@@ -11,9 +11,6 @@
 
 @interface JJAppDelegate : NSObject <NSApplicationDelegate, JJMidiDelegate>{
     @private
-
-    NSMutableArray *currentlyPlayingNotesInOrder;
-    NSMutableSet *currentlyPlayingNotes;
     NSArray *midiDelegates;
 
 }
@@ -22,5 +19,4 @@
 
 @property(nonatomic, strong) NSMutableArray *currentlyPlayingNotesInOrder;
 @property(nonatomic, strong) NSMutableSet *currentlyPlayingNotes;
-@property(nonatomic, strong) NSArray *midiDelegates;
 @end

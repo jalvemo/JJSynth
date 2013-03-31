@@ -8,6 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "JJSoundModule.h"
 
+typedef float(^JJOscillatorFunction)(float);
+
+extern JJOscillatorFunction const JJOscillatorSaw;
+extern JJOscillatorFunction const JJOscillatorSin;
+extern JJOscillatorFunction const JJOscillatorSquare;
 
 @interface JJOscillator : JJSoundModule{
     @private
@@ -15,16 +20,12 @@
     float phase;
     float playingNote;
     float playingFrequency;
+    JJOscillatorFunction oscillatorFunction;
 }
 
-@property(nonatomic) float noteOffset;
-@property(nonatomic) float phase;
-@property(nonatomic) float playingNote;
-@property(nonatomic) float playingFrequency;
+- (id)initWithNoteOffset:(float)noteOffset oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
 
-- (id)initWithNoteOffset:(float)noteOffset;
-
-+ (id)oscillatorWithNoteOffset:(float)noteOffset;
++ (id)oscillatorWithNoteOffset:(float)noteOffset oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
 
 - (float)getOutput;
 @end

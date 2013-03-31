@@ -14,8 +14,8 @@
 // cutoff and resonance are from 0 to 127
 
 - (void)updateFilter {
-    c = pow(0.5, (128 - cutoff)   / 16.0);
-    r = pow(0.5, (resonance + 24) / 16.0);
+    c = (float) pow(0.5, (128 - cutoff)   / 16.0);
+    r = (float) pow(0.5, (resonance + 24) / 16.0);
     fval = 1 - r * c;
 }
 
