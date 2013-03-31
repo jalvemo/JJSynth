@@ -41,7 +41,7 @@
 - (float)getOutput {
 
     float result;
-    if (noteOn){
+    if (noteOn) {
         phase += 1.0 / sampleRate;
 
         if (phase <= attack)
@@ -50,9 +50,7 @@
             result = (1.0 - (1.0 - sustainLevel) * (phase - attack) / (decay - attack));
         else
             result = sustainLevel;
-    }
-
-    if (!noteOn){
+    }else {
         result = lastResult - releaseRate;
         if (result < 0)
             result = 0;
@@ -60,8 +58,28 @@
 
     lastResult = result;
 
-    return result * [input getOutput];;
+    return result * [input getOutput];
+}
 
+#define MAX_ATTACK_DECAY_RELEASE 127
+- (void)controllerChange:(float)change onController:(int)controller {
+
+    switch (controller) {
+        case 73:
+            attack = change / MAX_ATTACK_DECAY_RELEASE;
+            break;
+        case 75:
+            decay = change / MAX_ATTACK_DECAY_RELEASE;
+            break;
+        case 79:
+            sustainLevel = change / 127;
+            break;
+        case 72:
+            releaseRate = 1.0 / sampleRate / (change / MAX_ATTACK_DECAY_RELEASE);
+            break;
+        default:
+            break;
+    }
 }
 
 @end

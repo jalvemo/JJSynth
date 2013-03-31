@@ -21,12 +21,6 @@
 
     Boolean noteOn;
 }
-@property(nonatomic) float attack;
-@property(nonatomic) float decay;
-@property(nonatomic) float sustainLevel;
-@property(nonatomic) float releaseRate;
-
-@property(nonatomic, strong) JJSoundModule *input;
 
 - (id)initWithAttack:(float)attack decay:(float)decay sustainLevel:(float)sustainLevel release:(float)release input:(JJSoundModule *)input;
 

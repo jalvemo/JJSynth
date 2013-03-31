@@ -31,25 +31,32 @@
     return [[self alloc] initWithStrength:aStrength length:aLength input:anInput];
 }
 
-static const Boolean multiDelay = YES;
-
 - (float)getOutput {
 
     float output = [input getOutput];
 
-    if (!multiDelay)
-        history[phase] = [NSNumber numberWithFloat:output];
-
     output += strength * [(NSNumber *)history[(phase + 1) % length] floatValue];
 
-    if (multiDelay)
-        history[phase] = [NSNumber numberWithFloat:output];
+    history[phase] = [NSNumber numberWithFloat:output];
 
     phase = (phase + 1) % length;
 
     return output;
-//    }
-
 }
+
+
+- (void)controllerChange:(float)change onController:(int)controller {
+    switch (controller) {
+        case 91:
+            strength = change / 127;
+            break;
+        case 17:
+//            length = (int) (change * sampleRate / 127); // todo think about how to in a nice way keep the delay continues while changing delay length.
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end

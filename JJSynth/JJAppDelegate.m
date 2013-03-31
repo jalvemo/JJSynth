@@ -113,7 +113,7 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
             break;
         case 0xE0: // pitch bend
             // get value between -1 and 1, 0 is equlibrium
-            [delegate pitchBend:combined / (double) 0x1FFF - 1];
+            [delegate pitchBend:(float) (combined / (double) 0x1FFF - 1)];
             break;
         case 0xF0: // sys stuff, ignore
         default:
@@ -188,14 +188,14 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
             envelopeWithAttack:0.05
                          decay:1.0
                   sustainLevel:0.8
-                       release:0.2
+                       release:0.1
                          input:filter];
 
-    JJDelay *delay = [JJDelay delayWithStrength:0.6 length:0.2 input:envelope];
+    JJDelay *delay = [JJDelay delayWithStrength:0.4 length:0.2 input:envelope];
 
     JJSoundModule *soundModule = delay;
 
-    midiDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, filter, envelope, nil];
+    midiDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, filter, envelope, delay, nil];
 
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)  {
 
