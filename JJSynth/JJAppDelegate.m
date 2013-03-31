@@ -15,6 +15,8 @@
 #import "JJDelay.h"
 #import "JJFilter.h"
 
+#define AMP (0.3)
+
 @implementation JJAppDelegate
 
 @synthesize currentlyPlayingNotesInOrder;
@@ -150,8 +152,6 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
 - (void)setupSynth{
     Novocaine *audioManager = [Novocaine audioManager];
 
-    //__block NSArray *soundModules = [NSArray arrayWithObjects: nil];
-
     sampleRate = (float) audioManager.samplingRate;
 
     JJOscillator *oscillator1 = [JJOscillator oscillatorWithNoteOffset:0 andWaveForm:&sawOsc];
@@ -172,17 +172,21 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
                        release:0.1
                          input:filter];
 
-    JJDelay *delay = [JJDelay delayWithStrength:0.4 length:0.2 input:envelope];
+    JJDelay *delay = [JJDelay
+            delayWithStrength:0.4
+                       length:0.2
+                        input:envelope];
 
-    JJSoundModule *soundModule = delay;
+    JJSoundModule *lastSoundModuleInChain;
+    lastSoundModuleInChain = delay;
 
-    midiDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, filter, envelope, delay, nil];
+    midiDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, filter, envelope, delay, oscillatorMixer, nil];
 
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)  {
 
         for (int i=0; i < numFrames; ++i) {
 
-            float theta = [soundModule getOutput] * 0.1;
+            float theta = [lastSoundModuleInChain getOutput] * AMP;
 
             for (int iChannel = 0; iChannel < numChannels; ++iChannel)
                 data[i * numChannels + iChannel] = theta;
