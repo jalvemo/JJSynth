@@ -34,9 +34,6 @@
 - (void)noteOff:(int)note{
     noteOn = NO;
 }
-- (void)noteTransferTo:(int)note{
-
-}
 
 - (float)getOutput {
 

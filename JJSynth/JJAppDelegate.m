@@ -34,11 +34,6 @@
         [midiDelegate noteOff:note];
     }
 }
-- (void)noteTransferTo:(int) note{
-    for (id<JJMidiDelegate> midiDelegate in midiDelegates){
-        [midiDelegate noteTransferTo:note];
-    }
-}
 - (void)pitchBend:(float)bend {
     for (id<JJMidiDelegate> midiDelegate in midiDelegates){
         [midiDelegate pitchBend:bend];
