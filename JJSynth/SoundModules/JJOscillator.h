@@ -21,7 +21,9 @@ extern float sineOsc(float phase);
     oscFunction waveFormFunction;
     float noteOffset;
     float phase;
-    float playingFrequency;
+    float frequency;
+    float note;
+    float pitchBend;
 }
 
 - (id)initWithNoteOffset:(float)theNoteOffset andWaveForm:(oscFunction)waveFunction;

@@ -29,6 +29,7 @@ extern float sawOsc(float phase) {
     if (self) {
         noteOffset = theNoteOffset;
         waveFormFunction = waveFunction;
+        pitchBend = 0;
     }
 
     return self;
@@ -39,15 +40,21 @@ extern float sawOsc(float phase) {
 }
 
 - (float)getOutput {
-    phase += playingFrequency / sampleRate; //  += 1.0 / (sampleRate / playingFrequency);
+    phase += frequency / sampleRate; //  += 1.0 / (sampleRate / frequency);
     if (phase > 1) phase = -1;
 
     return (*waveFormFunction)(phase);
 }
 
-- (void)noteOn:(int)note withVelocity:(int)velocity {
+- (void)noteOn:(int)theNote withVelocity:(int)velocity {
     phase = 0;
-    playingFrequency = freqFromNote(note + noteOffset);
+    note = theNote;
+    frequency = freqFromNote(theNote + pitchBend + noteOffset);
+}
+
+- (void)pitchBend:(float)bend {
+    pitchBend = bend;
+    frequency = freqFromNote(note + pitchBend + noteOffset);
 }
 
 @end
