@@ -16,18 +16,6 @@
 #import "JJFilter.h"
 
 @implementation JJAppDelegate
-//
-//float sineOsc(float phase){
-//    return (float) sin(phase * M_PI * 2);
-//}
-//
-//float squareOsc(float phase){
-//    return signbit(phase);
-//}
-//
-//float sawOsc(float phase){
-//    return phase;
-//}
 
 @synthesize currentlyPlayingNotesInOrder;
 @synthesize currentlyPlayingNotes;
@@ -72,36 +60,29 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
     JJAppDelegate *delegate = (__bridge JJAppDelegate *)procRef;
 
     const MIDIPacket *packet = packetList->packet;
-    int message = packet->data[0];
     int note = packet->data[1];
     int velocity = packet->data[2];
 
     int combined = CombineBytes(packet->data[1], packet->data[2]);
     
-    NSNumber *noteNumber = [NSNumber numberWithInt:packet->data[1]];
-    
     switch (packet->data[0] & 0xF0) {
         case 0x80: // note off
             [delegate.currentlyPlayingNotes removeObject:[NSNumber numberWithInt:note]];
 
-            // ta bort senaste noterna om de inte spelas längre
+            // remove last note in list if it's not currently playing
             while ([delegate.currentlyPlayingNotesInOrder count] > 0 && ![delegate.currentlyPlayingNotes containsObject:[delegate.currentlyPlayingNotesInOrder lastObject]]) {
                 [delegate.currentlyPlayingNotesInOrder removeLastObject];
             }
 
+            // we have notes still playing
             if ([delegate.currentlyPlayingNotesInOrder count] > 0) {
-                [delegate noteTransferTo:[[[delegate currentlyPlayingNotesInOrder] lastObject] integerValue]];
-
+                [delegate noteOn:(int)[[[delegate currentlyPlayingNotesInOrder] lastObject] integerValue] withVelocity:1];
             } else {
                 [delegate noteOff:note];
             }
             break;
         case 0x90: // note on
-            if (delegate.currentlyPlayingNotes.count == 0){
-                [delegate noteOn:note withVelocity:velocity];
-            }else{
-                [delegate noteTransferTo:note];
-            }
+            [delegate noteOn:note withVelocity:velocity];
             [delegate.currentlyPlayingNotesInOrder addObject:[NSNumber numberWithInt:note]];
             [delegate.currentlyPlayingNotes addObject:[NSNumber numberWithInt:note]];
             break;
@@ -169,13 +150,13 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
 - (void)setupSynth{
     Novocaine *audioManager = [Novocaine audioManager];
 
-    __block NSArray *soundModules = [NSArray arrayWithObjects: nil];
+    //__block NSArray *soundModules = [NSArray arrayWithObjects: nil];
 
     sampleRate = (float) audioManager.samplingRate;
 
-    JJOscillator *oscillator1 = [JJOscillator oscillatorWithNoteOffset:0];
-    JJOscillator *oscillator2 = [JJOscillator oscillatorWithNoteOffset:0.1];
-    JJOscillator *oscillator3 = [JJOscillator oscillatorWithNoteOffset:-12];
+    JJOscillator *oscillator1 = [JJOscillator oscillatorWithNoteOffset:0 andWaveForm:&sawOsc];
+    JJOscillator *oscillator2 = [JJOscillator oscillatorWithNoteOffset:0.1 andWaveForm:&sawOsc];
+    JJOscillator *oscillator3 = [JJOscillator oscillatorWithNoteOffset:-12 andWaveForm:&sineOsc];
 
     JJMixer *oscillatorMixer = [JJMixer mixerWithInputs:[NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, nil]];
     

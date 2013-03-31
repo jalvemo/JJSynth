@@ -11,46 +11,43 @@
 @implementation JJOscillator {
 
 }
-@synthesize noteOffset;
-@synthesize phase;
-@synthesize playingNote;
-@synthesize playingFrequency;
 
-- (id)initWithNoteOffset:(float)noteOffset {
+extern float sineOsc(float phase) {
+    return (float)sin(phase * M_PI * 2);
+}
+
+extern float squareOsc(float phase) {
+    return signbit(phase);
+}
+
+extern float sawOsc(float phase) {
+    return phase;
+}
+
+- (id)initWithNoteOffset:(float)theNoteOffset andWaveForm:(oscFunction)waveFunction {
     self = [super init];
     if (self) {
-        self.noteOffset = noteOffset;
+        noteOffset = theNoteOffset;
+        waveFormFunction = waveFunction;
     }
 
     return self;
 }
 
-+ (id)oscillatorWithNoteOffset:(float)noteOffset {
-    return [[self alloc] initWithNoteOffset:noteOffset];
++ (id)oscillatorWithNoteOffset:(float)noteOffset andWaveForm:(oscFunction)waveFunction {
+    return [[self alloc] initWithNoteOffset:noteOffset andWaveForm:waveFunction];
 }
-
 
 - (float)getOutput {
     phase += playingFrequency / sampleRate; //  += 1.0 / (sampleRate / playingFrequency);
-    if (phase > 1.0) phase = -1;
+    if (phase > 1) phase = -1;
 
-    return playingNote ? phase : 0;
+    return (*waveFormFunction)(phase);
 }
 
 - (void)noteOn:(int)note withVelocity:(int)velocity {
     phase = 0;
-    playingNote = note;
-    playingFrequency = frequencyFromNote(note);
-}
-
-- (void)noteOff:(int)note {
-//    note = 0;
-//    playingFrequency = 0;
-//    playingNote = 0;
-}
-
-- (void)noteTransferTo:(int)note {
-    [self noteOn:note withVelocity:1];
+    playingFrequency = freqFromNote(note + noteOffset);
 }
 
 @end

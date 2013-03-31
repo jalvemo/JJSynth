@@ -8,23 +8,25 @@
 #import <Foundation/Foundation.h>
 #import "JJSoundModule.h"
 
+#define freqFromNote(note) (440 * (float)pow(2,(note-69)/12))
+
+typedef float (*oscFunction)(float);
+
+extern float squareOsc(float phase);
+extern float sawOsc(float phase);
+extern float sineOsc(float phase);
 
 @interface JJOscillator : JJSoundModule{
     @private
+    oscFunction waveFormFunction;
     float noteOffset;
     float phase;
-    float playingNote;
     float playingFrequency;
 }
 
-@property(nonatomic) float noteOffset;
-@property(nonatomic) float phase;
-@property(nonatomic) float playingNote;
-@property(nonatomic) float playingFrequency;
+- (id)initWithNoteOffset:(float)theNoteOffset andWaveForm:(oscFunction)waveFunction;
 
-- (id)initWithNoteOffset:(float)noteOffset;
-
-+ (id)oscillatorWithNoteOffset:(float)noteOffset;
++ (id)oscillatorWithNoteOffset:(float)noteOffset andWaveForm:(oscFunction)waveFunction;
 
 - (float)getOutput;
 @end
