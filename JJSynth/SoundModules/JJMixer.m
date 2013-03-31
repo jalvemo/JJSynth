@@ -29,7 +29,7 @@
 - (float)getOutput {
     float result = 0;
     for (JJSoundModule *soundModule in inputs){
-        result += soundModule.getOutput;
+        result += soundModule.getOutput / [inputs count];
     }
     return result;
 }
