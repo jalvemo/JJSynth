@@ -12,21 +12,21 @@
 
 // http://www.musicdsp.org/showone.php?id=185
 // cutoff and resonance are from 0 to 127
-
 - (void)updateFilter {
     c = (float) pow(0.5, (128 - cutoff)   / 16.0);
     r = (float) pow(0.5, (resonance + 24) / 16.0);
     fval = 1 - r * c;
 }
 
-- (float)getOutput {
-    
-    float output = [input getOutput];
-    
-    v0 = fval * v0 - c * v1 + c * output;
+- (float)applySimpleFilterToInput:(float)input {
+    v0 = fval * v0 - c * v1 + c * input;
     v1 = fval * v1 + c * v0;
-    
+
     return v1;
+}
+
+- (float)getOutput {
+    return [self applySimpleFilterToInput:[input getOutput]];
 }
 
 - (id)initWithCutoff:(float)theCutoff resonance:(float)theResonance input:(JJSoundModule *)theInput {
@@ -35,9 +35,9 @@
         cutoff = theCutoff;
         resonance = theResonance;
         input = theInput;
+
+        [self updateFilter];
     }
-    
-    [self updateFilter];
     
     return self;
 }

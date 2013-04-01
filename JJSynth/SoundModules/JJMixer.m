@@ -28,6 +28,8 @@
 
 - (float)getOutput {
     float result = 0;
+    // removed the divide by number of input. It feels incorrect and i removed it from out first implementation on purpose, but maybe we should check this out:
+    // http://www.vttoth.com/CMS/index.php/technical-notes/68
     for (JJSoundModule *soundModule in inputs){
         result += soundModule.getOutput;
     }

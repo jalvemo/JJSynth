@@ -15,19 +15,9 @@
 #import "JJDelay.h"
 #import "JJFilter.h"
 
+#define AMP (0.3)
+
 @implementation JJAppDelegate
-//
-//float sineOsc(float phase){
-//    return (float) sin(phase * M_PI * 2);
-//}
-//
-//float squareOsc(float phase){
-//    return signbit(phase);
-//}
-//
-//float sawOsc(float phase){
-//    return phase;
-//}
 
 
 - (void)noteOn:(int)note withVelocity: (int)velocity{
@@ -38,11 +28,6 @@
 - (void)noteOff:(int) note{
     for (id<JJMidiDelegate> midiDelegate in midiDelegates){
         [midiDelegate noteOff:note];
-    }
-}
-- (void)noteTransferTo:(int) note{
-    for (id<JJMidiDelegate> midiDelegate in midiDelegates){
-        [midiDelegate noteTransferTo:note];
     }
 }
 - (void)pitchBend:(float)bend {
@@ -68,36 +53,33 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
     JJAppDelegate *appDelegate = (__bridge JJAppDelegate *)procRef;
 
     const MIDIPacket *packet = packetList->packet;
-    int message = packet->data[0];
     int note = packet->data[1];
     int velocity = packet->data[2];
 
     int combined = CombineBytes(packet->data[1], packet->data[2]);
     
-    NSNumber *noteNumber = [NSNumber numberWithInt:packet->data[1]];
-    
     switch (packet->data[0] & 0xF0) {
         case 0x80: // note off
             [appDelegate.currentlyPlayingNotes removeObject:[NSNumber numberWithInt:note]];
 
-            // ta bort senaste noterna om de inte spelas längre
+            // remove last note in list if it's not currently playing
             while ([appDelegate.currentlyPlayingNotesInOrder count] > 0 && ![appDelegate.currentlyPlayingNotes containsObject:[appDelegate.currentlyPlayingNotesInOrder lastObject]]) {
                 [appDelegate.currentlyPlayingNotesInOrder removeLastObject];
             }
 
             if ([appDelegate.currentlyPlayingNotesInOrder count] > 0) {
-                [appDelegate noteTransferTo:[[[appDelegate currentlyPlayingNotesInOrder] lastObject] integerValue]];
+                [appDelegate noteOn:(int)[[[appDelegate currentlyPlayingNotesInOrder] lastObject] integerValue] withVelocity:1];
+            }
 
+            // we have notes still playing
+            if ([appDelegate.currentlyPlayingNotesInOrder count] > 0) {
+                [appDelegate noteOn:(int)[[[appDelegate currentlyPlayingNotesInOrder] lastObject] integerValue] withVelocity:1];
             } else {
                 [appDelegate noteOff:note];
             }
             break;
         case 0x90: // note on
-            if (appDelegate.currentlyPlayingNotes.count == 0){
-                [appDelegate noteOn:note withVelocity:velocity];
-            }else{
-                [appDelegate noteTransferTo:note];
-            }
+            [appDelegate noteOn:note withVelocity:velocity];
             [appDelegate.currentlyPlayingNotesInOrder addObject:[NSNumber numberWithInt:note]];
             [appDelegate.currentlyPlayingNotes addObject:[NSNumber numberWithInt:note]];
             break;
@@ -185,17 +167,22 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
                        release:0.1
                          input:filter];
 
-    JJDelay *delay = [JJDelay delayWithStrength:0.0 length:0.2 input:envelope];
 
-    JJSoundModule *soundModule = delay;
+    JJDelay *delay = [JJDelay
+            delayWithStrength:0.0
+                       length:0.2
+                        input:envelope];
 
-    midiDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, envelope, delay, nil];
+    JJSoundModule *lastSoundModuleInChain;
+    lastSoundModuleInChain = delay;
+
+    midiDelegates = [NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, filter, envelope, delay, oscillatorMixer, nil];
 
     [audioManager setOutputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)  {
 
         for (int i=0; i < numFrames; ++i) {
 
-            float theta = [soundModule getOutput] * 0.1;
+            float theta = [lastSoundModuleInChain getOutput] * AMP;
 
             for (int iChannel = 0; iChannel < numChannels; ++iChannel)
                 data[i * numChannels + iChannel] = theta;

@@ -15,7 +15,6 @@
 
 - (void)noteOn:(int)note withVelocity: (int)velocity {}
 - (void)noteOff:(int)note {}
-- (void)noteTransferTo:(int)note {}
 - (void)pitchBend:(float)bend {}
 - (void)controllerChange:(float)change onController: (int)controller {}
 

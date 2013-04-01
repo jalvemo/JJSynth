@@ -28,14 +28,13 @@
 }
 
 - (void)noteOn:(int)note withVelocity: (int)velocity{
+    if (!noteOn)
+        phase = 0;
+
     noteOn = YES;
-    phase = 0;
 }
 - (void)noteOff:(int)note{
     noteOn = NO;
-}
-- (void)noteTransferTo:(int)note{
-
 }
 
 - (float)getOutput {

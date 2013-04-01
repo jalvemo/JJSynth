@@ -14,13 +14,15 @@ extern JJOscillatorFunction const JJOscillatorSaw;
 extern JJOscillatorFunction const JJOscillatorSin;
 extern JJOscillatorFunction const JJOscillatorSquare;
 
+
 @interface JJOscillator : JJSoundModule{
     @private
+    JJOscillatorFunction oscillatorFunction;
     float noteOffset;
     float phase;
-    float playingNote;
-    float playingFrequency;
-    JJOscillatorFunction oscillatorFunction;
+    float frequency;
+    float note;
+    float pitchBend;
 }
 
 - (id)initWithNoteOffset:(float)noteOffset oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;

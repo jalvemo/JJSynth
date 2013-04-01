@@ -39,32 +39,28 @@ static inline float frequencyFromNote(float note) {
     return self;
 }
 
+
 + (id)oscillatorWithNoteOffset:(float)noteOffset oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction {
     return [[self alloc] initWithNoteOffset:noteOffset oscillatorFunction:anOscillatorFunction];
 }
 
-
 - (float)getOutput {
-    phase += playingFrequency / sampleRate; //  += 1.0 / (sampleRate / playingFrequency);
-    if (phase > 1.0) phase = -1;
+    phase += frequency / sampleRate;
+    if (phase > 1) phase = -1;
 
-    return playingNote ? oscillatorFunction(phase) : 0;
+    return oscillatorFunction(phase);
+
 }
 
-- (void)noteOn:(int)note withVelocity:(int)velocity {
+- (void)noteOn:(int)theNote withVelocity:(int)velocity {
     phase = 0;
-    playingNote = note;
-    playingFrequency = frequencyFromNote(note);
+    note = theNote;
+    frequency = frequencyFromNote(theNote + pitchBend + noteOffset);
 }
 
-- (void)noteOff:(int)note {
-//    note = 0;
-//    playingFrequency = 0;
-//    playingNote = 0;
-}
-
-- (void)noteTransferTo:(int)note {
-    [self noteOn:note withVelocity:1];
+- (void)pitchBend:(float)bend {
+    pitchBend = bend;
+    frequency = frequencyFromNote(note + pitchBend + noteOffset);
 }
 
 @end
