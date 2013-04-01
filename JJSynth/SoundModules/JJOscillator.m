@@ -29,19 +29,20 @@ static inline float frequencyFromNote(float note) {
 
 }
 
-- (id)initWithNoteOffset:(float)theNoteOffset oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction {
+- (id)initWithNoteOffset:(float)theNoteOffset amplitude:(float)anAmplitude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction {
     self = [super init];
     if (self) {
         noteOffset = theNoteOffset;
         oscillatorFunction = anOscillatorFunction;
+        amplitude = anAmplitude;
     }
 
     return self;
 }
 
 
-+ (id)oscillatorWithNoteOffset:(float)noteOffset oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction {
-    return [[self alloc] initWithNoteOffset:noteOffset oscillatorFunction:anOscillatorFunction];
++ (id)oscillatorWithNoteOffset:(float)noteOffset amplitude:(float)anAmplitude ampletude:(float)anAmpletude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction {
+    return [[self alloc] initWithNoteOffset:noteOffset amplitude:anAmplitude oscillatorFunction:anOscillatorFunction];
 }
 
 - (float)getOutput {
@@ -55,12 +56,12 @@ static inline float frequencyFromNote(float note) {
 - (void)noteOn:(int)theNote withVelocity:(int)velocity {
     phase = 0;
     note = theNote;
-    frequency = frequencyFromNote(theNote + pitchBend + noteOffset);
+    frequency = amplitude * frequencyFromNote(theNote + pitchBend + noteOffset);
 }
 
 - (void)pitchBend:(float)bend {
     pitchBend = bend;
-    frequency = frequencyFromNote(note + pitchBend + noteOffset);
+    frequency = amplitude * frequencyFromNote(note + pitchBend + noteOffset);
 }
 
 @end

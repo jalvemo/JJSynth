@@ -23,11 +23,12 @@ extern JJOscillatorFunction const JJOscillatorSquare;
     float frequency;
     float note;
     float pitchBend;
+    float amplitude;
 }
 
-- (id)initWithNoteOffset:(float)noteOffset oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
+- (id)initWithNoteOffset:(float)noteOffset amplitude:(float)anAmplitude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
 
-+ (id)oscillatorWithNoteOffset:(float)noteOffset oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
++ (id)oscillatorWithNoteOffset:(float)noteOffset amplitude:(float)anAmplitude ampletude:(float)anAmpletude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
 
 - (float)getOutput;
 @end
