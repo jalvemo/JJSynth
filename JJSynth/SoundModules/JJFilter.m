@@ -26,7 +26,11 @@
 }
 
 - (float)getOutput {
-    return [self applySimpleFilterToInput:[input getOutput]];
+    if (cutoff == 127 && resonance == 0){
+        return [input getOutput];
+    }else{
+        return [self applySimpleFilterToInput:[input getOutput]];
+    }
 }
 
 - (id)initWithCutoff:(float)theCutoff resonance:(float)theResonance input:(JJSoundModule *)theInput {
