@@ -28,7 +28,7 @@ extern JJOscillatorFunction const JJOscillatorSquare;
 
 - (id)initWithNoteOffset:(float)noteOffset amplitude:(float)anAmplitude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
 
-+ (id)oscillatorWithNoteOffset:(float)noteOffset amplitude:(float)anAmplitude ampletude:(float)anAmpletude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
++ (id)oscillatorWithNoteOffset:(float)noteOffset amplitude:(float)anAmplitude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction;
 
 - (float)getOutput;
 @end

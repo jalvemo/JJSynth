@@ -41,7 +41,7 @@ static inline float frequencyFromNote(float note) {
 }
 
 
-+ (id)oscillatorWithNoteOffset:(float)noteOffset amplitude:(float)anAmplitude ampletude:(float)anAmpletude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction {
++ (id)oscillatorWithNoteOffset:(float)noteOffset amplitude:(float)anAmplitude oscillatorFunction:(JJOscillatorFunction)anOscillatorFunction {
     return [[self alloc] initWithNoteOffset:noteOffset amplitude:anAmplitude oscillatorFunction:anOscillatorFunction];
 }
 

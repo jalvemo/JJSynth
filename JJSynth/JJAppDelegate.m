@@ -149,9 +149,9 @@ void midiInputCallback (const MIDIPacketList *packetList, void *procRef, void *s
 
     sampleRate = (float) audioManager.samplingRate;
 
-    JJOscillator *oscillator1 = [JJOscillator oscillatorWithNoteOffset:0 amplitude:0 ampletude:1.0 oscillatorFunction:JJOscillatorSaw];
-    JJOscillator *oscillator2 = [JJOscillator oscillatorWithNoteOffset:0.1 amplitude:0 ampletude:0.5 oscillatorFunction:JJOscillatorSaw];
-    JJOscillator *oscillator3 = [JJOscillator oscillatorWithNoteOffset:-12 amplitude:0 ampletude:1.0 oscillatorFunction:JJOscillatorSaw];
+    JJOscillator *oscillator1 = [JJOscillator oscillatorWithNoteOffset:0 amplitude:1.0 oscillatorFunction:JJOscillatorSaw];
+    JJOscillator *oscillator2 = [JJOscillator oscillatorWithNoteOffset:0.1 amplitude:0.5 oscillatorFunction:JJOscillatorSaw];
+    JJOscillator *oscillator3 = [JJOscillator oscillatorWithNoteOffset:-12 amplitude:1.0 oscillatorFunction:JJOscillatorSaw];
 
     JJMixer *oscillatorMixer = [JJMixer mixerWithInputs:[NSArray arrayWithObjects:oscillator1, oscillator2, oscillator3, nil]];
 
